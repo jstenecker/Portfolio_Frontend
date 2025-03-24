@@ -1,52 +1,57 @@
-import { useEffect } from "react";
-import "./Home.css"; // Import the CSS file
-
-const images = [
-  { src: "/assets/image1.jpg", caption: "Add caption here" },
-  { src: "/assets/image2.jpg", caption: "Add caption here" },
-  { src: "/assets/image3.jpg", caption: "Add caption here" },
-];
+import { useState } from "react";
+import "./Home.css";
 
 const Home = () => {
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-          }
-        });
-      },
-      { threshold: 0.5 }
-    );
-
-    const elements = document.querySelectorAll(".image-container");
-    elements.forEach((element) => observer.observe(element));
-
-    return () => observer.disconnect();
-  }, []);
+  const [activeTab, setActiveTab] = useState("about");
 
   return (
     <div className="home-container">
-      <h1 className="home-title">Welcome to ...</h1>
+      <h1 className="home-title">Welcome to My Portfolio</h1>
       <p className="home-description">
-        Insert your website description here. This is a placeholder text that can be replaced with your own content.
+        I&apos;m a software engineer passionate about building full-stack applications and solving real-world problems with code.
       </p>
-      <p className="home-description">
-        Insert your website description here. This is a placeholder text that can be replaced with your own content.
-      </p>
-      <div className="home-images-wrapper">
-        {images.map((image, index) => (
-          <div
-            key={index}
-            className={`image-container ${
-              index % 2 === 0 ? "slide-in-left" : "slide-in-right"
-            }`}
+
+      <div className="tab-wrapper">
+        <div className="tab-buttons">
+          <button
+            className={activeTab === "about" ? "active" : ""}
+            onClick={() => setActiveTab("about")}
           >
-            <img src={image.src} alt={image.caption} className="home-image" />
-            <p className="home-caption">{image.caption}</p>
-          </div>
-        ))}
+            About Me
+          </button>
+          <button
+            className={activeTab === "skills" ? "active" : ""}
+            onClick={() => setActiveTab("skills")}
+          >
+            Skills
+          </button>
+        </div>
+
+        <div className="tab-content">
+          {activeTab === "about" && (
+            <div className="tab-panel">
+              <p>
+                I&apos;m Joseph Stenecker, a developer with experience in building
+                responsive web apps using React, Node.js, and modern tech stacks.
+              </p>
+              <p>
+                I enjoy learning new technologies, contributing to open-source,
+                and developing practical solutions.
+              </p>
+            </div>
+          )}
+          {activeTab === "skills" && (
+            <div className="tab-panel">
+              <ul>
+                <li>JavaScript / TypeScript</li>
+                <li>React / Redux / Tailwind CSS</li>
+                <li>Node.js / Express</li>
+                <li>MongoDB / PostgreSQL</li>
+                <li>Git / GitHub / CI/CD</li>
+              </ul>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
