@@ -1,8 +1,13 @@
 import AppRouter from "./router";
-import "./App.css"; // Contains just the Tailwind directives
+import ThemeBackground from "./components/ThemeBackground";
 
 const App = () => {
-  return <AppRouter />;
+  return (
+    <div className="relative">
+      <ThemeBackground />
+      <AppRouter />
+    </div>
+  );
 };
 
 export default App;

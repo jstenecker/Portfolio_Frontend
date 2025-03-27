@@ -14,6 +14,7 @@ import {
   SiGithub,
   SiCypress,
 } from "react-icons/si";
+import { motion } from "framer-motion";
 
 const skills = [
   { icon: <SiJavascript className="text-yellow-400" />, label: "JavaScript" },
@@ -30,6 +31,38 @@ const skills = [
   { icon: <SiCypress className="text-teal-500" />, label: "CI/CD (Cypress)" },
 ];
 
+const projectPlaceholder = [
+  {
+    title: "Project One",
+    description: "A full-stack web app using React and Node.js.",
+    tech: ["React", "Node.js", "MongoDB"],
+    github: "#",
+    live: "#",
+  },
+  {
+    title: "Project Two",
+    description: "Responsive portfolio built with Tailwind CSS.",
+    tech: ["HTML", "Tailwind", "Framer Motion"],
+    github: "#",
+    live: "#",
+  },
+  {
+    title: "Project Three",
+    description: "CI/CD pipeline with GitHub Actions and Cypress testing.",
+    tech: ["CI/CD", "GitHub Actions", "Cypress"],
+    github: "#",
+    live: "#",
+  },
+];
+
+const fadeInUp = {
+  hidden: { opacity: 0, y: 50 },
+  visible: (i) => ({
+    opacity: 1,
+    y: 0,
+    transition: { delay: i * 0.2 },
+  }),
+};
 
 const Home = () => {
   const [name, setName] = useState("");
@@ -50,10 +83,10 @@ const Home = () => {
           window.scrollTo({ top, behavior: "smooth" });
         }
         localStorage.removeItem("scrollToSection");
-      }, 200); // delay to ensure DOM is loaded
+      }, 200);
     }
   }, []);
-  
+
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
     if (user) {
@@ -83,7 +116,7 @@ const Home = () => {
   return (
     <div className="pt-20 px-4 max-w-3xl mx-auto space-y-20">
       <section id="landing" className="text-center space-y-4">
-        <h1 className="text-4xl font-bold">Welcome to My Portfolio</h1>
+        <h1 className="text-4xl font-bold">Joseph Stenecker</h1>
         <p className="text-lg text-gray-600">
           I&apos;m a software engineer passionate about building full-stack applications and solving real-world problems with code.
         </p>
@@ -92,7 +125,7 @@ const Home = () => {
       <section id="about">
         <h2 className="text-2xl font-semibold mb-4">About Me</h2>
         <p className="text-gray-700">
-          I&apos;m Joseph Stenecker, a developer experienced in building responsive web apps using React, Node.js, and modern tech stacks.
+          I&apos;m Joe, a developer experienced in building responsive web apps using React, Node.js, and modern tech stacks.
           I enjoy learning new technologies, contributing to open-source, and developing practical solutions.
         </p>
       </section>
@@ -105,13 +138,43 @@ const Home = () => {
               key={index}
               className="flex flex-col items-center text-center group cursor-pointer transition-transform hover:scale-110"
             >
-              <div className="text-4xl text-primary group-hover:text-primary-hover">
-                {skill.icon}
-              </div>
+              <div className="text-4xl">{skill.icon}</div>
               <span className="text-sm mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-text">
                 {skill.label}
               </span>
             </div>
+          ))}
+        </div>
+      </section>
+
+      <section id="projects">
+        <h2 className="text-2xl font-bold mb-6 text-center">Projects</h2>
+        <div className="space-y-6">
+          {projectPlaceholder.map((project, i) => (
+            <motion.div
+              key={i}
+              className="bg-card text-text p-6 rounded-lg shadow-md"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              custom={i}
+              variants={fadeInUp}
+            >
+              <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
+              <p className="text-gray-500 mb-2">{project.description}</p>
+              <p className="text-sm mb-3">
+                <span className="font-semibold text-gray-700 dark:text-gray-300">Tech:</span>{" "}
+                {project.tech.join(", ")}
+              </p>
+              <div className="flex gap-4">
+                <a href={project.github} target="_blank" className="underline text-primary hover:text-primary-hover">
+                  GitHub
+                </a>
+                <a href={project.live} target="_blank" className="underline text-primary hover:text-primary-hover">
+                  Live Site
+                </a>
+              </div>
+            </motion.div>
           ))}
         </div>
       </section>

@@ -138,3 +138,48 @@ form textarea {
 form button {
   @apply btn;
 }
+/* Background transitions */
+.bg-day {
+  background: linear-gradient(to bottom, #f7f9fc, #cbe8ff);
+}
+
+.bg-night {
+  background: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
+}
+
+.bg-stars {
+  background-image: radial-gradient(white 1px, transparent 1px);
+  background-size: 30px 30px;
+  opacity: 0.2;
+}
+
+.sun-glow {
+  background: radial-gradient(circle, #ffd700 0%, #ffcc00 50%, #f9a825 100%);
+  box-shadow: 0 0 30px 10px rgba(255, 204, 0, 0.4);
+}
+
+@keyframes fadeToNight {
+  0% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeToDay {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.2;
+  }
+}
+
+.animate-fadeToNight {
+  animation: fadeToNight 2s ease forwards;
+}
+
+.animate-fadeToDay {
+  animation: fadeToDay 2s ease forwards;
+}
