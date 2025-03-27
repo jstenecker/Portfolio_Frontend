@@ -11,9 +11,7 @@ const Navbar = () => {
 
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
-    if (storedUser) {
-      setUser(storedUser);
-    }
+    if (storedUser) setUser(storedUser);
   }, []);
 
   useEffect(() => {
@@ -23,31 +21,44 @@ const Navbar = () => {
   }, []);
 
   const scrollTo = (id) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    const element = document.getElementById(id);
+    if (element) {
+      const offset = 80; // height of the navbar
+      const top = element.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top, behavior: "smooth" });
+    }
+  };
+
+  const handleDropdownToggle = () => {
+    setDropdownVisible(!dropdownVisible);
+  };
+
+  const closeDropdown = () => {
+    setDropdownVisible(false);
   };
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-3 shadow-md backdrop-blur ${
-        scrolled ? "bg-white/80" : "bg-white/40"
-      } transition-all`}
+      className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-3 shadow-md backdrop-blur transition-all ${
+        scrolled ? "bg-white/80 dark:bg-gray-900/80" : "bg-white/40 dark:bg-gray-800/40"
+      }`}
     >
       <div className="flex space-x-4">
-        <button onClick={() => scrollTo("landing")} className="text-sm font-medium hover:text-blue-600">Home</button>
-        <button onClick={() => scrollTo("about")} className="text-sm font-medium hover:text-blue-600">About</button>
-        <button onClick={() => scrollTo("skills")} className="text-sm font-medium hover:text-blue-600">Skills</button>
-        <button onClick={() => scrollTo("contact")} className="text-sm font-medium hover:text-blue-600">Contact</button>
+        <button onClick={() => scrollTo("landing")} className="text-sm font-medium hover:text-primary dark:text-white">Home</button>
+        <button onClick={() => scrollTo("about")} className="text-sm font-medium hover:text-primary dark:text-white">About</button>
+        <button onClick={() => scrollTo("skills")} className="text-sm font-medium hover:text-primary dark:text-white">Skills</button>
+        <button onClick={() => scrollTo("contact")} className="text-sm font-medium hover:text-primary dark:text-white">Contact</button>
       </div>
       <div className="relative">
         {user ? (
-          <div onClick={() => setDropdownVisible(!dropdownVisible)} className="cursor-pointer text-2xl text-gray-800">
+          <div onClick={handleDropdownToggle} className="cursor-pointer text-2xl text-gray-800 dark:text-white">
             <FaUserCircle />
-            {dropdownVisible && <ProfileDropdown />}
+            {dropdownVisible && <ProfileDropdown user={user} closeDropdown={closeDropdown} />}
           </div>
         ) : (
           <button
             onClick={() => navigate("/login")}
-            className="text-sm font-medium text-white bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded"
+            className="text-sm font-medium text-white bg-primary hover:bg-primary-hover px-4 py-2 rounded"
           >
             Login
           </button>

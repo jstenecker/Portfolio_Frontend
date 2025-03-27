@@ -1,5 +1,35 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import {
+  SiJavascript,
+  SiTypescript,
+  SiReact,
+  SiRedux,
+  SiTailwindcss,
+  SiNodedotjs,
+  SiExpress,
+  SiMongodb,
+  SiPostgresql,
+  SiGit,
+  SiGithub,
+  SiCypress,
+} from "react-icons/si";
+
+const skills = [
+  { icon: <SiJavascript className="text-yellow-400" />, label: "JavaScript" },
+  { icon: <SiTypescript className="text-blue-500" />, label: "TypeScript" },
+  { icon: <SiReact className="text-cyan-400" />, label: "React" },
+  { icon: <SiRedux className="text-purple-500" />, label: "Redux" },
+  { icon: <SiTailwindcss className="text-sky-400" />, label: "Tailwind CSS" },
+  { icon: <SiNodedotjs className="text-green-500" />, label: "Node.js" },
+  { icon: <SiExpress className="text-gray-500" />, label: "Express" },
+  { icon: <SiMongodb className="text-green-600" />, label: "MongoDB" },
+  { icon: <SiPostgresql className="text-indigo-500" />, label: "PostgreSQL" },
+  { icon: <SiGit className="text-orange-500" />, label: "Git" },
+  { icon: <SiGithub className="text-gray-600 dark:text-white" />, label: "GitHub" },
+  { icon: <SiCypress className="text-teal-500" />, label: "CI/CD (Cypress)" },
+];
+
 
 const Home = () => {
   const [name, setName] = useState("");
@@ -53,14 +83,22 @@ const Home = () => {
       </section>
 
       <section id="skills">
-        <h2 className="text-2xl font-semibold mb-4">Skills</h2>
-        <ul className="list-disc list-inside space-y-1 text-gray-700">
-          <li>JavaScript / TypeScript</li>
-          <li>React / Redux / Tailwind CSS</li>
-          <li>Node.js / Express</li>
-          <li>MongoDB / PostgreSQL</li>
-          <li>Git / GitHub / CI/CD</li>
-        </ul>
+        <h2 className="text-2xl font-bold mb-6 text-center">Skills</h2>
+        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-6 justify-items-center">
+          {skills.map((skill, index) => (
+            <div
+              key={index}
+              className="flex flex-col items-center text-center group cursor-pointer transition-transform hover:scale-110"
+            >
+              <div className="text-4xl text-primary group-hover:text-primary-hover">
+                {skill.icon}
+              </div>
+              <span className="text-sm mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-text">
+                {skill.label}
+              </span>
+            </div>
+          ))}
+        </div>
       </section>
 
       <section id="contact">
