@@ -13,13 +13,14 @@ const isAuthenticated = () => {
 const AppRouter = () => {
   return (
     <Router>
+      {/* Navbar appears on all pages */}
       <Navbar />
       <Routes>
         {/* Public Routes */}
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
 
-        {/* Protected Routes */}
+        {/* Protected Route */}
         <Route
           path="/profile"
           element={
@@ -31,7 +32,7 @@ const AppRouter = () => {
           }
         />
 
-        {/* Fallback */}
+        {/* Fallback for unknown routes */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Router>

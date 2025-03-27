@@ -1,14 +1,8 @@
 import AppRouter from "./router";
-import Navbar from "./components/navbar/Navbar";
+import "./App.css"; // Contains just the Tailwind directives
 
 const App = () => {
-  return (
-    <div>
-      <AppRouter/>
-      <Navbar/>
-      
-    </div>
-  );
+  return <AppRouter />;
 };
 
-export default App; 
+export default App;

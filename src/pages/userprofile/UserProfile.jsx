@@ -1,18 +1,14 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import "./UserProfile.css"; // Import the external CSS file
 
 const UserProfile = () => {
   const [user, setUser] = useState(null);
   const [message, setMessage] = useState("");
-  const [savedBuilds, setSavedBuilds] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Fetch user profile data
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
-      console.error("Token not found in localStorage");
       setMessage("Please log in to access your profile.");
       setLoading(false);
       return;
@@ -21,21 +17,12 @@ const UserProfile = () => {
     const fetchProfile = async () => {
       try {
         const response = await axios.get("http://localhost:5000/api/users/profile", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+          headers: { Authorization: `Bearer ${token}` },
         });
 
-        // Save user data to state and localStorage
         setUser(response.data);
         localStorage.setItem("user", JSON.stringify(response.data));
-
-        // Dispatch custom event to notify other components
-        const userUpdatedEvent = new Event("userUpdated");
-        window.dispatchEvent(userUpdatedEvent);
-
-        // Debugging log to verify the profile picture
-        console.log("Fetched user data:", response.data);
+        window.dispatchEvent(new Event("userUpdated"));
       } catch (error) {
         console.error("Error fetching profile:", error.response?.data || error);
         setMessage("Error fetching profile. Please log in again.");
@@ -47,28 +34,6 @@ const UserProfile = () => {
     fetchProfile();
   }, []);
 
-  // Fetch saved builds
-  const fetchBuilds = async () => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      setMessage("Please log in to load your builds.");
-      return;
-    }
-
-    try {
-      const response = await axios.get("http://localhost:5000/api/users/builds", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      setSavedBuilds(response.data);
-    } catch (error) {
-      console.error("Error fetching builds:", error.response?.data || error);
-      setMessage("Error fetching saved builds.");
-    }
-  };
-
-  // Delete account
   const handleDeleteAccount = async () => {
     const token = localStorage.getItem("token");
     if (!token) {
@@ -78,18 +43,12 @@ const UserProfile = () => {
 
     try {
       await axios.delete("http://localhost:5000/api/users/delete", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+        headers: { Authorization: `Bearer ${token}` },
       });
       localStorage.removeItem("token");
       localStorage.removeItem("user");
-
-      // Dispatch custom event to notify other components
-      const userUpdatedEvent = new Event("userUpdated");
-      window.dispatchEvent(userUpdatedEvent);
-
-      window.location.href = "/"; // Redirect to home page
+      window.dispatchEvent(new Event("userUpdated"));
+      window.location.href = "/";
     } catch (error) {
       console.error("Error deleting account:", error.response?.data || error);
       setMessage("Error deleting account.");
@@ -97,55 +56,42 @@ const UserProfile = () => {
   };
 
   if (loading) {
-    return <div className="user-profile">Loading user data...</div>;
+    return (
+      <div className="text-center text-lg mt-10">Loading user data...</div>
+    );
   }
 
   return (
-    <div className="user-profile">
-      <h1>User Profile</h1>
+    <div className="max-w-2xl mx-auto px-4 py-10 bg-white shadow rounded space-y-6">
+      <h1 className="text-3xl font-bold text-center">User Profile</h1>
+
       {user ? (
-        <div className="profile-info">
-          <p>
-            <strong>Name:</strong> {user.name}
-          </p>
-          <p>
-            <strong>Email:</strong> {user.email}
-          </p>
-          <p>
-            <strong>Registered on:</strong> {new Date(user.createdAt).toLocaleDateString()}
-          </p>
+        <div className="space-y-2">
+          <p><strong>Name:</strong> {user.name}</p>
+          <p><strong>Email:</strong> {user.email}</p>
+          <p><strong>Registered on:</strong> {new Date(user.createdAt).toLocaleDateString()}</p>
           {user.profilePicture && (
             <img
               src={user.profilePicture}
               alt="Profile"
-              className="profile-picture"
+              className="w-24 h-24 rounded-full mt-4 mx-auto"
             />
           )}
         </div>
       ) : (
-        <p className="error-message">{message}</p>
+        <p className="text-red-600 text-center">{message}</p>
       )}
+
       <hr />
-      <h2>Saved PC Builds</h2>
-      <button className="load-builds-btn" onClick={fetchBuilds}>
-        Load Builds
-      </button>
-      <ul className="builds-list">
-        {savedBuilds.length > 0 ? (
-          savedBuilds.map((build) => (
-            <li key={build.id} className="build-item">
-              {build.name}
-            </li>
-          ))
-        ) : (
-          <p>No saved builds found.</p>
-        )}
-      </ul>
-      <hr />
-      <button className="delete-account-btn" onClick={handleDeleteAccount}>
+
+      <button
+        onClick={handleDeleteAccount}
+        className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition"
+      >
         Delete Account
       </button>
-      {message && <p className="error-message">{message}</p>}
+
+      {message && <p className="text-red-500 text-center">{message}</p>}
     </div>
   );
 };

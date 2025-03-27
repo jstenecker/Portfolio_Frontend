@@ -3,9 +3,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import "./Login.css";
 
-// Firebase Configuration
+// Firebase Config
 const firebaseConfig = {
   apiKey: "AIzaSyCeIZTXFxo12kM7Bu2ZIpxqc06C_LIiqn8",
   authDomain: "pcparts-bb425.firebaseapp.com",
@@ -16,7 +15,6 @@ const firebaseConfig = {
   measurementId: "G-Q9T6YJ5PP1",
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
@@ -31,15 +29,15 @@ const Login = () => {
 
   const saveUser = (userData, token) => {
     localStorage.setItem("user", JSON.stringify(userData));
-    localStorage.setItem("token", token); // Save token for authorization
-    window.dispatchEvent(new Event("userUpdate")); // Notify other components of the update
+    localStorage.setItem("token", token);
+    window.dispatchEvent(new Event("userUpdate"));
     const redirectPath = localStorage.getItem("redirectPath") || "/";
     navigate(redirectPath);
   };
 
   const handleLogin = async (event) => {
     event.preventDefault();
-    setMessage(""); // Clear any existing messages
+    setMessage("");
     try {
       const response = await axios.post("http://localhost:5000/api/users/login", {
         email,
@@ -49,13 +47,12 @@ const Login = () => {
       setMessage("Login successful!");
     } catch (error) {
       setMessage(error.response?.data?.message || "Error logging in");
-      console.error("Login error:", error);
     }
   };
 
   const handleRegister = async (event) => {
     event.preventDefault();
-    setMessage(""); // Clear any existing messages
+    setMessage("");
     try {
       const response = await axios.post("http://localhost:5000/api/users/register", {
         name,
@@ -64,15 +61,14 @@ const Login = () => {
       });
       saveUser(response.data.user, response.data.token);
       setMessage("Registration successful!");
-      setIsRegistering(false); // Switch to login view
+      setIsRegistering(false);
     } catch (error) {
       setMessage(error.response?.data?.message || "Error registering");
-      console.error("Registration error:", error);
     }
   };
 
   const handleGoogleAuth = async () => {
-    setMessage(""); // Clear any existing messages
+    setMessage("");
     try {
       const result = await signInWithPopup(auth, provider);
       const idToken = await result.user.getIdToken();
@@ -83,65 +79,90 @@ const Login = () => {
       setMessage("Google login successful!");
     } catch (error) {
       setMessage(error.response?.data?.message || "Error with Google login");
-      console.error("Google login error:", error);
     }
   };
 
   return (
-    <div className="page-container">
-      <div className="login-container">
-        <h1 className="login-title">{isRegistering ? "Register" : "Login"}</h1>
-        <form onSubmit={isRegistering ? handleRegister : handleLogin} className="login-form">
+    <div className="min-h-screen flex items-center justify-center px-4 bg-gray-50">
+      <div className="w-full max-w-md bg-white rounded-lg shadow-md p-6 space-y-6">
+        <h1 className="text-2xl font-bold text-center">
+          {isRegistering ? "Register" : "Login"}
+        </h1>
+
+        <form
+          onSubmit={isRegistering ? handleRegister : handleLogin}
+          className="space-y-4"
+        >
           {isRegistering && (
-            <div className="login-input-group">
-              <label htmlFor="name">Name:</label>
+            <div>
+              <label htmlFor="name" className="block font-medium">
+                Name:
+              </label>
               <input
-                type="text"
                 id="name"
+                type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Enter your name"
                 required
-                className="login-input"
+                className="w-full px-4 py-2 border rounded focus:outline-none focus:ring focus:border-blue-400"
               />
             </div>
           )}
-          <div className="login-input-group">
-            <label htmlFor="email">Email:</label>
+          <div>
+            <label htmlFor="email" className="block font-medium">
+              Email:
+            </label>
             <input
-              type="email"
               id="email"
+              type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter your email"
               required
-              className="login-input"
+              className="w-full px-4 py-2 border rounded focus:outline-none focus:ring focus:border-blue-400"
             />
           </div>
-          <div className="login-input-group">
-            <label htmlFor="password">Password:</label>
+          <div>
+            <label htmlFor="password" className="block font-medium">
+              Password:
+            </label>
             <input
-              type="password"
               id="password"
+              type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Enter your password"
               required={!isRegistering}
-              className="login-input"
+              className="w-full px-4 py-2 border rounded focus:outline-none focus:ring focus:border-blue-400"
             />
           </div>
-          <button type="submit" className="login-button">
+
+          <button
+            type="submit"
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded transition"
+          >
             {isRegistering ? "Register" : "Log In"}
           </button>
         </form>
-        <p className="login-message">{message}</p>
-        <hr />
-        <button onClick={handleGoogleAuth} className="google-login-button">
+
+        {message && <p className="text-center text-sm text-red-600">{message}</p>}
+
+        <hr className="my-4" />
+
+        <button
+          onClick={handleGoogleAuth}
+          className="w-full bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded transition"
+        >
           Log in with Google
         </button>
-        <p className="login-switch">
+
+        <p className="text-center text-sm">
           {isRegistering ? "Already have an account?" : "Don't have an account?"}{" "}
-          <button onClick={() => setIsRegistering(!isRegistering)} className="login-switch-button">
+          <button
+            onClick={() => setIsRegistering(!isRegistering)}
+            className="text-blue-600 hover:underline"
+          >
             {isRegistering ? "Log In" : "Register"}
           </button>
         </p>
