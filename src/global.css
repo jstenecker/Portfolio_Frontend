@@ -56,17 +56,21 @@ p {
   @apply text-lg leading-relaxed mb-4;
 }
 
-button {
-  @apply rounded-lg border border-transparent py-3 px-6 text-base sm:text-lg md:text-xl font-medium bg-primary text-white transition-all duration-300 ease-in-out;
-}
-button:hover {
-  @apply bg-primary-hover;
-}
-button:focus,
-button:focus-visible {
-  @apply outline-none ring-4 ring-primary;
+/* 🔁 Utility Button Class */
+.btn {
+  @apply inline-flex items-center justify-center px-6 py-2 text-sm font-medium text-primary rounded-full border border-transparent transition-all duration-300;
 }
 
+.btn:hover {
+  background-color: rgba(100, 108, 255, 0.1); /* fallback color for hover */
+}
+
+.dark .btn:hover {
+  background-color: rgba(100, 108, 255, 0.2); /* darker hover effect for dark mode */
+}
+
+
+/* Navbar styles */
 nav {
   @apply bg-card py-4 px-6 w-full flex justify-between items-center shadow-lg sticky top-0 z-50;
 }
@@ -79,6 +83,7 @@ nav ul li a {
   @apply text-text py-2 px-4 rounded-lg hover:bg-primary-hover hover:text-white transition-colors ease-in-out;
 }
 
+/* Hero section */
 .hero {
   @apply bg-gradient-to-r from-primary to-primary-hover text-white flex flex-col justify-center items-center text-center w-full;
   height: 350px;
@@ -92,10 +97,12 @@ nav ul li a {
   @apply text-lg sm:text-xl md:text-2xl text-white max-w-3xl mx-auto;
 }
 
+/* Card styles */
 .card {
   @apply bg-card text-text p-6 rounded-lg shadow-md mb-6;
 }
 
+/* Footer styles */
 footer {
   @apply bg-card text-center py-4 text-text mt-auto;
 }
@@ -104,6 +111,7 @@ footer {
   @apply text-sm;
 }
 
+/* Form styles */
 form {
   @apply bg-card p-8 rounded-lg shadow-lg max-w-lg mx-auto;
 }
@@ -126,6 +134,7 @@ form textarea {
   @apply h-32 resize-none;
 }
 
+/* 🔁 Reuse the .btn style for form submit */
 form button {
-  @apply bg-primary text-white py-2 px-4 rounded-lg hover:bg-primary-hover transition duration-300;
+  @apply btn;
 }

@@ -13,13 +13,9 @@ const Button = ({ route, onClick, children }) => {
   return (
     <motion.button
       onClick={handleClick}
-      whileHover={{
-        scale: 1.1,
-        backgroundColor: "#535bf2",
-        color: "#ffffff",
-      }}
-      whileTap={{ scale: 0.95 }}
-      className="px-5 py-2 text-white bg-primary text-base font-medium rounded-lg border border-transparent cursor-pointer transition duration-300"
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.97 }}
+      className="btn"
     >
       {children}
     </motion.button>
