@@ -40,6 +40,21 @@ const Home = () => {
   const [success, setSuccess] = useState("");
 
   useEffect(() => {
+    const targetId = localStorage.getItem("scrollToSection");
+    if (targetId) {
+      setTimeout(() => {
+        const offset = 80;
+        const el = document.getElementById(targetId);
+        if (el) {
+          const top = el.getBoundingClientRect().top + window.scrollY - offset;
+          window.scrollTo({ top, behavior: "smooth" });
+        }
+        localStorage.removeItem("scrollToSection");
+      }, 200); // delay to ensure DOM is loaded
+    }
+  }, []);
+  
+  useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
     if (user) {
       setName(user.name);
