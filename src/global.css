@@ -5,7 +5,7 @@
 :root {
   --color-primary: #646cff;
   --color-primary-hover: #535bf2;
-  --color-secondary: #f9a825;
+  --color-secondary: #2925f9;
   --color-background: #f7f9fc;
   --color-text: #213547;
   --color-card: #ffffff;
@@ -14,9 +14,9 @@
 .dark {
   --color-primary: #646cff;
   --color-primary-hover: #535bf2;
-  --color-secondary: #f9a825;
+  --color-secondary: #1e1c86;
   --color-background: #242424;
-  --color-text: rgba(255, 255, 255, 0.87);
+  --color-text: rgba(255, 255, 255, 0.966);
   --color-card: #1a1a1a;
 }
 
@@ -54,6 +54,11 @@ h1 {
 
 p {
   @apply text-lg leading-relaxed mb-4;
+}
+
+/* Override for dark mode */
+.dark p {
+  @apply text-neutral-400;
 }
 
 /* 🔁 Utility Button Class */
@@ -155,7 +160,7 @@ form button {
 
 .sun-glow {
   background: radial-gradient(circle, #ffd700 0%, #ffcc00 50%, #f9a825 100%);
-  box-shadow: 0 0 30px 10px rgba(255, 204, 0, 0.4);
+  box-shadow: 0 0 30px 10px rgba(255, 217, 0, 0.938);
 }
 
 @keyframes fadeToNight {
