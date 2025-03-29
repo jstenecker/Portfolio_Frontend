@@ -22,15 +22,6 @@ const skills = [
   { icon: <SiCypress className="text-teal-500" />, label: "CI/CD (Cypress)" },
 ];
 
-const fadeInUp = {
-  hidden: { opacity: 0, y: 50 },
-  visible: (i) => ({
-    opacity: 1,
-    y: 0,
-    transition: { delay: i * 0.2 },
-  }),
-};
-
 const Home = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -116,12 +107,19 @@ const Home = () => {
         <h2 className="text-2xl font-bold mb-6 text-center">Skills</h2>
         <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-6 justify-items-center">
           {skills.map((skill, index) => (
-            <div key={index} className="flex flex-col items-center group cursor-pointer transition-transform hover:scale-110">
-              <div className="text-4xl">{skill.icon}</div>
+            <motion.div
+              key={index}
+              className="flex flex-col items-center group cursor-pointer"
+              initial={{ opacity: 0, y: index % 2 === 0 ? -50 : 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20, delay: index * 0.05 }}
+              viewport={{ once: true }}
+            >
+              <div className="text-4xl transition-transform group-hover:scale-110">{skill.icon}</div>
               <span className="text-sm mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-text">
                 {skill.label}
               </span>
-            </div>
+            </motion.div>
           ))}
         </div>
       </section>
@@ -133,8 +131,10 @@ const Home = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          variants={fadeInUp}
-          custom={1}
+          variants={{
+            hidden: { opacity: 0, y: 50 },
+            visible: { opacity: 1, y: 0, transition: { delay: 0.3 } },
+          }}
         >
           <h3 className="text-xl font-semibold mb-2">{stockProject.title}</h3>
           <p className="text-gray-600 dark:text-gray-400 mb-2">{stockProject.description}</p>
@@ -142,7 +142,6 @@ const Home = () => {
             <span className="font-semibold text-gray-700 dark:text-gray-300">Tech:</span>{" "}
             {stockProject.tech.join(", ")}
           </p>
-
           <div className="flex gap-4 mb-4">
             {stockProject.repo.map((link, i) => (
               <a key={i} href={link} className="text-blue-500 underline hover:text-blue-700" target="_blank" rel="noreferrer">
@@ -154,7 +153,6 @@ const Home = () => {
             </a>
           </div>
 
-          {/* Screenshots */}
           <div className="relative flex flex-wrap gap-4">
             {stockProject.images.map((src, i) => (
               <img
@@ -185,7 +183,6 @@ const Home = () => {
         {success && <p className="text-green-500 mt-2">{success}</p>}
       </section>
 
-      {/* Modal */}
       {modalImage && (
         <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
           <div className="relative max-w-4xl w-full mx-auto">
