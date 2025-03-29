@@ -99,7 +99,12 @@ const Home = () => {
       <section id="about">
         <h2 className="text-2xl font-semibold mb-4">About Me</h2>
         <p className="text-gray-700 dark:text-gray-300">
-          I&apos;m Joe, a developer experienced in React, Node.js, and modern stacks. I love solving problems and building scalable tools.
+        I&apos;m Joseph Stenecker, a full-stack software engineer with a passion for building clean, efficient, and scalable web applications. I specialize in React and Node.js, and enjoy working across the stack to bring ideas to life — from dynamic front-end interfaces to robust back-end systems and API integrations.
+
+        I&apos;m always learning, experimenting with new tools, and improving workflows. My experience includes Firebase authentication, MongoDB, CI/CD pipelines, and modern frameworks like Vite and Tailwind CSS.
+
+        Beyond coding, I enjoy collaborating with others, contributing to open-source projects, and staying active in the tech community. Whether I&apos;m building a product from scratch or optimizing an existing system, I focus on creating practical solutions that deliver real value.
+        My goal is to create meaningful, maintainable applications that users love and businesses rely on. Let&apos;s build something great together.
         </p>
       </section>
 

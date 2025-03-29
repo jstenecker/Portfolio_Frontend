@@ -4,17 +4,24 @@ import { FaSun, FaMoon } from "react-icons/fa";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
-  const [darkMode, setDarkMode] = useState(
-    document.documentElement.classList.contains("dark")
-  );
+  const [darkMode, setDarkMode] = useState(false);
   const navigate = useNavigate();
 
+  // Apply saved theme on initial load
+  useEffect(() => {
+    const saved = localStorage.getItem("darkMode") === "true";
+    setDarkMode(saved);
+    document.documentElement.classList.toggle("dark", saved);
+  }, []);
+
+  // Change navbar style on scroll
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Smooth scroll logic
   const scrollTo = (id) => {
     if (window.location.pathname !== "/") {
       localStorage.setItem("scrollToSection", id);
@@ -29,10 +36,12 @@ const Navbar = () => {
     }
   };
 
+  // Toggle theme
   const toggleDarkMode = () => {
-    const isDark = document.documentElement.classList.toggle("dark");
-    setDarkMode(isDark);
-    localStorage.setItem("darkMode", isDark);
+    const newMode = !darkMode;
+    setDarkMode(newMode);
+    localStorage.setItem("darkMode", newMode);
+    document.documentElement.classList.toggle("dark", newMode);
   };
 
   return (
@@ -54,7 +63,7 @@ const Navbar = () => {
           <button
             key={item.id}
             onClick={() => scrollTo(item.id)}
-            className="text-sm font-medium dark:text-white hover:text-primary transition-all transform hover:-translate-y-1 duration-200"
+            className="text-sm font-medium dark:text-white hover:text-primary transition-transform duration-200 hover:-translate-y-1"
           >
             {item.label}
           </button>
