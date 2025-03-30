@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
 import { motion } from "framer-motion";
 import {
   SiJavascript, SiTypescript, SiReact, SiRedux, SiTailwindcss,
   SiNodedotjs, SiExpress, SiMongodb, SiPostgresql, SiGit,
   SiGithub, SiCypress
 } from "react-icons/si";
+import { FaGithub, FaLinkedin, FaFilePdf } from "react-icons/fa";
 
 const skills = [
   { icon: <SiJavascript className="text-yellow-400" />, label: "JavaScript" },
@@ -23,12 +23,6 @@ const skills = [
 ];
 
 const Home = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [subject, setSubject] = useState("");
-  const [message, setMessage] = useState("");
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
   const [modalImage, setModalImage] = useState(null);
 
   const stockProject = {
@@ -61,48 +55,48 @@ const Home = () => {
     }
   }, []);
 
-  useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("user"));
-    if (user) {
-      setName(user.name);
-      setEmail(user.email);
-    }
-  }, []);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError("");
-    setSuccess("");
-
-    if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
-      setError("Please enter a valid email address.");
-      return;
-    }
-
-    try {
-      await axios.post("/api/contact", { name, email, subject, message });
-      setSuccess("Message sent successfully!");
-    } catch {
-      setError("Failed to send message.");
-    }
-  };
 
   return (
     <div className="flex">
       {/* Sidebar */}
-      <aside className="hidden lg:flex flex-col justify-center items-start px-8 w-64 fixed top-0 bottom-0 left-0 bg-background dark:bg-gray-900 z-40">
-        <h1 className="text-3xl font-bold text-primary mb-1">Joseph Stenecker</h1>
-        <h2 className="text-md text-gray-600 dark:text-gray-300">Full Stack Software Engineer</h2>
+      <aside className="hidden lg:flex flex-col justify-center items-center px-6 w-64 fixed top-0 bottom-0 left-0 bg-background dark:bg-gray-900 z-40">
+        <div className="text-center space-y-8">
+          <h1 className="text-3xl font-bold text-primary">Joseph Stenecker</h1>
+          <h2 className="text-md text-gray-600 dark:text-gray-300 mb-4">Full Stack Software Engineer</h2>
+          <div className="flex justify-center space-x-4 text-xl text-gray-700 dark:text-gray-300">
+            <a href="https://github.com/jstenecker" target="_blank" rel="noreferrer" className="hover:text-primary">
+              <FaGithub />
+            </a>
+            <a href="https://www.linkedin.com/in/joseph-stenecker" target="_blank" rel="noreferrer" className="hover:text-primary">
+              <FaLinkedin />
+            </a>
+            <a href="/assets/Resume_Joseph_Stenecker.pdf" target="_blank" rel="noreferrer" className="hover:text-primary">
+              <FaFilePdf />
+            </a>
+          </div>
+        </div>
       </aside>
 
       {/* Main Content */}
       <div className="flex-1 lg:ml-64 pt-20 px-4 max-w-5xl mx-auto space-y-20">
         <section id="landing" className="space-y-4">
-          <div className="lg:hidden text-center space-y-2">
+          <div className="lg:hidden text-center space-y-4">
             <h1 className="text-3xl font-bold">Joseph Stenecker</h1>
             <h2 className="text-lg text-gray-600 dark:text-gray-300">Full Stack Software Engineer</h2>
+            <div className="flex justify-center space-x-4 text-xl text-gray-700 dark:text-gray-300 mt-2">
+              <a href="https://github.com/jstenecker" target="_blank" rel="noreferrer" className="hover:text-primary space-y-4">
+                <FaGithub />
+              </a>
+              <a href="https://www.linkedin.com/in/joseph-stenecker" target="_blank" rel="noreferrer" className="hover:text-primary">
+                <FaLinkedin />
+              </a>
+              <a href="/assets/Resume_Joseph_Stenecker.pdf" target="_blank" rel="noreferrer" className="hover:text-primary">
+                <FaFilePdf />
+              </a>
+            </div>
           </div>
         </section>
+
 
         <section id="about">
         <h2 className="text-2xl font-semibold mb-4">About Me</h2>
@@ -188,18 +182,6 @@ const Home = () => {
           </motion.div>
         </section>
 
-        <section id="contact">
-          <h2 className="text-2xl font-semibold mb-4">Contact</h2>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <input type="text" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} className="w-full border px-4 py-2 rounded shadow-sm" required />
-            <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full border px-4 py-2 rounded shadow-sm" required />
-            <input type="text" placeholder="Subject" value={subject} onChange={(e) => setSubject(e.target.value)} className="w-full border px-4 py-2 rounded shadow-sm" required />
-            <textarea placeholder="Message" value={message} onChange={(e) => setMessage(e.target.value)} className="w-full border px-4 py-2 rounded shadow-sm" required />
-            <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">Send Message</button>
-          </form>
-          {error && <p className="text-red-500 mt-2">{error}</p>}
-          {success && <p className="text-green-500 mt-2">{success}</p>}
-        </section>
 
         {modalImage && (
           <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
@@ -212,6 +194,6 @@ const Home = () => {
       </div>
     </div>
   );
-};
+}
 
 export default Home;
