@@ -58,7 +58,6 @@ const Navbar = () => {
           { label: "About", id: "about" },
           { label: "Skills", id: "skills" },
           { label: "Projects", id: "projects" },
-          { label: "Contact", id: "contact" },
         ].map((item) => (
           <button
             key={item.id}

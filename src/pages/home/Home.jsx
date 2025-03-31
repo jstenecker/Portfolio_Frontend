@@ -41,6 +41,8 @@ const Home = () => {
     ],
   };
 
+  
+
   useEffect(() => {
     const id = localStorage.getItem("scrollToSection");
     if (id) {
@@ -58,32 +60,15 @@ const Home = () => {
 
   return (
     <div className="flex">
-      {/* Sidebar */}
-      <aside className="hidden lg:flex flex-col justify-center items-center px-6 w-64 fixed top-0 bottom-0 left-0 bg-background dark:bg-gray-900 z-40">
-        <div className="text-center space-y-8">
-          <h1 className="text-3xl font-bold text-primary">Joseph Stenecker</h1>
-          <h2 className="text-md text-gray-600 dark:text-gray-300 mb-4">Full Stack Software Engineer</h2>
-          <div className="flex justify-center space-x-4 text-xl text-gray-700 dark:text-gray-300">
-            <a href="https://github.com/jstenecker" target="_blank" rel="noreferrer" className="hover:text-primary">
-              <FaGithub />
-            </a>
-            <a href="https://www.linkedin.com/in/joseph-stenecker" target="_blank" rel="noreferrer" className="hover:text-primary">
-              <FaLinkedin />
-            </a>
-            <a href="/assets/Resume_Joseph_Stenecker.pdf" target="_blank" rel="noreferrer" className="hover:text-primary">
-              <FaFilePdf />
-            </a>
-          </div>
-        </div>
-      </aside>
+
 
       {/* Main Content */}
-      <div className="flex-1 lg:ml-64 pt-20 px-4 max-w-5xl mx-auto space-y-20">
-        <section id="landing" className="space-y-4">
+      <div className="flex-1 lg:ml-64 pt-20 px-4 max-w-screen-x1 w-full mx-auto mt-4 space-y-5">
+        <section id="landing" className="space-y-4 lg:mb-1 sm:mb-16">
           <div className="lg:hidden text-center space-y-4">
             <h1 className="text-3xl font-bold">Joseph Stenecker</h1>
             <h2 className="text-lg text-gray-600 dark:text-gray-300">Full Stack Software Engineer</h2>
-            <div className="flex justify-center space-x-4 text-xl text-gray-700 dark:text-gray-300 mt-2">
+            <div className="flex justify-center space-x-4 text-xl text-gray-700 dark:text-gray-300 mt-2 mb-10">
               <a href="https://github.com/jstenecker" target="_blank" rel="noreferrer" className="hover:text-primary space-y-4">
                 <FaGithub />
               </a>
@@ -99,8 +84,8 @@ const Home = () => {
 
 
         <section id="about">
-        <h2 className="text-2xl font-semibold mb-4">About Me</h2>
-        <p className="text-gray-700 dark:text-gray-300">
+        <h2 className="text-2xl font-semibold mt-4 mb-15 sm:mt-10">About Me</h2>
+        <p className="text-gray-700 mt-10 sm:mt-30 dark:text-gray-300">
         I&apos;m Joe, a full-stack software engineer with a passion for building clean, efficient, and scalable web applications. I specialize in React and Node.js, and enjoy working across the stack to bring ideas to life — from dynamic front-end interfaces to robust back-end systems and API integrations.
         </p>
         <p className="text-gray-700 dark:text-gray-300">
@@ -118,7 +103,7 @@ const Home = () => {
         </section>
 
         <section id="skills">
-          <h2 className="text-2xl font-bold mb-6 text-center">Skills</h2>
+          <h2 className="text-2xl font-bold mt-20 mb-6 text-center">Skills</h2>
           <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-6 justify-items-center">
             {skills.map((skill, index) => (
               <motion.div
@@ -139,9 +124,9 @@ const Home = () => {
         </section>
 
         <section id="projects">
-          <h2 className="text-2xl font-bold mb-6 text-center">Projects</h2>
+          <h2 className="text-2xl font-bold mb-6 mt-20 text-center">Projects</h2>
           <motion.div
-            className="bg-card text-text p-6 rounded-lg shadow-md"
+            className="bg-card text-text p-6 rounded-lg shadow-md mt-10"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
