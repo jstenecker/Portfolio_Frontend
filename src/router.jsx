@@ -2,7 +2,7 @@
 import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 import Home from "./pages/home/Home.jsx";
 import Navbar from "./components/navbar/Navbar";
-import Sidebar from "./components/sidebar.jsx";
+import Sidebar from "./components/Sidebar.jsx";
 
 
 const AppRouter = () => {
