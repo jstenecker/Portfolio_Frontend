@@ -63,7 +63,7 @@ const Home = () => {
 
 
       {/* Main Content */}
-      <div className="flex-1 lg:ml-64 pt-20 px-4 max-w-screen-x1 w-full mx-auto mt-4 space-y-5">
+      <div className="flex-1 lg:ml-64 pt-20 px-4 max-w-screen-x1 w-full mx-auto mt-4 lg:mr-20 space-y-5">
         <section id="landing" className="space-y-4 lg:mb-1 sm:mb-16">
           <div className="lg:hidden text-center space-y-4">
             <h1 className="text-3xl font-bold">Joseph Stenecker</h1>
@@ -103,7 +103,7 @@ const Home = () => {
         </section>
 
         <section id="skills">
-          <h2 className="text-2xl font-bold mt-20 mb-6 text-center">Skills</h2>
+          <h2 className="text-2xl font-bold mt-20 lg:mb-10 text-center">Skills</h2>
           <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-6 justify-items-center">
             {skills.map((skill, index) => (
               <motion.div
@@ -114,7 +114,7 @@ const Home = () => {
                 transition={{ type: "spring", stiffness: 300, damping: 20, delay: index * 0.05 }}
                 viewport={{ once: true }}
               >
-                <div className="text-4xl transition-transform group-hover:scale-110">{skill.icon}</div>
+                <div className="text-4xl transition-transform mb-10 group-hover:scale-110">{skill.icon}</div>
                 <span className="text-sm mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-text">
                   {skill.label}
                 </span>
