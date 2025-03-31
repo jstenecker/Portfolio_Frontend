@@ -7,7 +7,7 @@ const Navbar = () => {
   const [darkMode, setDarkMode] = useState(false);
   const navigate = useNavigate();
 
-  // Apply saved theme on initial load
+  // apply saved theme on initial load
   useEffect(() => {
     const saved = localStorage.getItem("darkMode") === "true";
     setDarkMode(saved);
