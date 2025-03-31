@@ -84,7 +84,7 @@ const Home = () => {
 
 
         <section id="about">
-        <h2 className="text-2xl font-semibold mt-4 mb-15 sm:mt-10">About Me</h2>
+        <h2 className="text-2xl font-semibold mt-4 mb-15 sm:mt-10">About</h2>
         <p className="text-gray-700 mt-10 sm:mt-30 dark:text-gray-300">
         I&apos;m Joe, a full-stack software engineer with a passion for building clean, efficient, and scalable web applications. I specialize in React and Node.js, and enjoy working across the stack to bring ideas to life — from dynamic front-end interfaces to robust back-end systems and API integrations.
         </p>
