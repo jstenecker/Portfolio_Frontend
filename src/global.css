@@ -139,11 +139,6 @@ form textarea {
   @apply h-32 resize-none;
 }
 
-/* 🔁 Reuse the .btn style for form submit */
-form button {
-  @apply btn;
-}
-
 
 @keyframes gradientMove {
   0% {
@@ -159,13 +154,13 @@ form button {
 
 
 .bg-gradient-animate {
-  background-image: linear-gradient(-45deg, #1e3a8a, #2d0f49, #163633, #0f172a);
+  background-image: linear-gradient(-45deg, #070e75, #122c1a, #2c234f, #0f2a10);
   background-size: 400% 400%;
   animation: gradientMove 15s ease infinite;
 }
 
 .bg-gradient-animate-light {
-  background-image: linear-gradient(-45deg, #9699a0, #dfccf0, #9cc0bc, #91aff5);
+  background-image: linear-gradient(-45deg, #6b7ea9e6, #bcf4c0ea, #9cc0bcee, #91f5a3ea);
   background-size: 400% 400%;
   animation: gradientMove 15s ease infinite;
 }
