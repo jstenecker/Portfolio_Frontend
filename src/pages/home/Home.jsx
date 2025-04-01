@@ -84,22 +84,13 @@ const Home = () => {
 
 
         <section id="about">
-        <h2 className="text-2xl font-semibold mt-4 mb-15 sm:mt-10">About</h2>
+        <h2 className="text-2xl font-semibold mt-4 mb-15 sm:mt-10">About Me</h2>
         <p className="text-gray-700 mt-10 sm:mt-30 dark:text-gray-300">
-        I&apos;m Joe, a full-stack software engineer with a passion for building clean, efficient, and scalable web applications. I specialize in React and Node.js, and enjoy working across the stack to bring ideas to life — from dynamic front-end interfaces to robust back-end systems and API integrations.
-        </p>
+        I&apos;m Joe, a full-stack software engineer passionate about building clean, scalable applications with React and Node.js. I thrive across the stack—crafting responsive front-ends, building solid back-end systems, and integrating APIs.        </p>
         <p className="text-gray-700 dark:text-gray-300">
-        I&apos;m always learning, experimenting with new tools, and improving workflows. My experience includes Firebase authentication, MongoDB, CI/CD pipelines, and modern frameworks like Vite and Tailwind CSS.
-        I thrive in collaborative environments and enjoy tackling challenges that require creative problem-solving. I believe in writing clean, maintainable code and following best practices to ensure the longevity of my projects.
-        </p>
+        I enjoy learning new tools and improving workflows. My experience includes Firebase auth, MongoDB, CI/CD pipelines, Vite, and Tailwind CSS. I value clean, maintainable code and love working with others to solve real-world problems.        </p>
         <p className="text-gray-700 dark:text-gray-300">
-        I have a strong foundation in JavaScript and TypeScript, and I&apos;m comfortable with both front-end and back-end development. I love building user-friendly interfaces that enhance the user experience while ensuring the underlying architecture is solid and efficient.
-        Beyond coding, I enjoy collaborating with others, contributing to open-source projects, and staying active in the tech community. 
-        </p>
-        <p className="text-gray-700 dark:text-gray-300">
-        Whether I&apos;m building a product from scratch or optimizing an existing system, I focus on creating practical solutions that deliver real value.
-        My goal is to create meaningful, maintainable applications that users love and businesses rely on. Let&apos;s build something great together.
-        </p>
+        Whether starting from scratch or refining existing systems, I focus on building scalable, reliable solutions that users enjoy and teams can grow with.        </p>
         </section>
 
         <section id="skills">
