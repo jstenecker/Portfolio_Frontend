@@ -59,11 +59,10 @@ const Home = () => {
 
 
   return (
-    <div className="flex">
-
+    <div className="relative z-0 w-full min-h-screen flex">
 
       {/* Main Content */}
-      <div className="flex-1 lg:ml-64 pt-20 px-4 max-w-screen-x1 w-full mx-auto mt-4 lg:mr-20 space-y-5">
+      <div className="flex-1 lg:ml-64 pt-20 px-4 max-w-screen-xl w-full mx-auto mt-4 lg:mr-20 space-y-5">
         <section id="landing" className="space-y-4 lg:mb-1 sm:mb-16">
           <div className="lg:hidden text-center space-y-4">
             <h1 className="text-3xl font-bold">Joseph Stenecker</h1>

@@ -3,6 +3,7 @@
 module.exports = {
   darkMode: 'class',
   content: ['./src/**/*.{html,js,jsx,ts,tsx}'],
+ 
   theme: {
     extend: {
       colors: {
@@ -13,11 +14,29 @@ module.exports = {
         card: 'var(--color-card)',
         text: 'var(--color-text)',
       },
+
       fontFamily: {
         inter: ['Inter', 'system-ui', 'Avenir', 'Helvetica', 'Arial', 'sans-serif'],
       },
+
       spacing: {
         'hero-height': '300px',
+      },
+  
+      backgroundSize: {
+        '400': '400% 400%',
+      },
+
+      animation: {
+        'gradient-move': 'gradientMove 15s ease infinite',
+      },
+      
+      keyframes: {
+        gradientMove: {
+          '0%': { backgroundPosition: '0% 50%' },
+          '50%': { backgroundPosition: '100% 50%' },
+          '100%': { backgroundPosition: '0% 50%' },
+        },
       },
     },
   },

@@ -25,11 +25,11 @@ html {
 }
 
 body {
-  @apply min-h-screen bg-background text-text font-inter transition-colors duration-300;
+  @apply min-h-screen bg-gradient-animate-light text-text font-inter transition-colors duration-300;
 }
 
 .dark body {
-  @apply bg-gray-900 text-white;
+  @apply bg-gradient-animate text-white;
 }
 
 a {
@@ -143,48 +143,30 @@ form textarea {
 form button {
   @apply btn;
 }
-/* Background transitions */
-.bg-day {
-  background: linear-gradient(to bottom, #f7f9fc, #cbe8ff);
-}
 
-.bg-night {
-  background: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
-}
 
-.bg-stars {
-  background-image: radial-gradient(white 1px, transparent 1px);
-  background-size: 30px 30px;
-  opacity: 0.2;
-}
-
-.sun-glow {
-  background: radial-gradient(circle, #ffd700 0%, #ffcc00 50%, #f9a825 100%);
-  box-shadow: 0 0 30px 10px rgba(255, 217, 0, 0.938);
-}
-
-@keyframes fadeToNight {
+@keyframes gradientMove {
   0% {
-    opacity: 0.2;
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
   }
   100% {
-    opacity: 1;
+    background-position: 0% 50%;
   }
 }
 
-@keyframes fadeToDay {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0.2;
-  }
+
+.bg-gradient-animate {
+  background-image: linear-gradient(-45deg, #1e3a8a, #2d0f49, #163633, #0f172a);
+  background-size: 400% 400%;
+  animation: gradientMove 15s ease infinite;
 }
 
-.animate-fadeToNight {
-  animation: fadeToNight 2s ease forwards;
+.bg-gradient-animate-light {
+  background-image: linear-gradient(-45deg, #9699a0, #dfccf0, #9cc0bc, #91aff5);
+  background-size: 400% 400%;
+  animation: gradientMove 15s ease infinite;
 }
 
-.animate-fadeToDay {
-  animation: fadeToDay 2s ease forwards;
-}

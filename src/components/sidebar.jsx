@@ -3,7 +3,7 @@ import { FaGithub, FaLinkedin, FaFileAlt } from "react-icons/fa";
 const Sidebar = () => {
   return (
     <aside className="hidden lg:flex flex-col justify-center items-center px-10 w-64 fixed top-0 bottom-0 left-0 z-40 
-    bg-background dark:bg-gray-900 transition-colors duration-500 ease-in-out">
+    shadow-sm transition-colors duration-500 ease-in-out">
         <div className="text-center">
         <h1 className="text-3xl font-bold text-primary mb-1">Joseph Stenecker</h1>
         <h2 className="text-md text-gray-600 mt-5 dark:text-gray-300">Full Stack Software Engineer</h2>
