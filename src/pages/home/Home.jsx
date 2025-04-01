@@ -84,7 +84,7 @@ const Home = () => {
 
 
         <section id="about">
-        <h2 className="text-2xl font-semibold mt-4 mb-15 sm:mt-10">About Me</h2>
+        <h2 className="text-2xl font-semibold mt-16 mb-15 lg:mt-4 sm:mt-10">About Me</h2>
         <p className="text-gray-700 mt-10 sm:mt-30 dark:text-gray-300">
         I&apos;m Joe, a full-stack software engineer passionate about building clean, scalable applications with React and Node.js. I thrive across the stack—crafting responsive front-ends, building solid back-end systems, and integrating APIs.        </p>
         <p className="text-gray-700 dark:text-gray-300">
@@ -94,7 +94,7 @@ const Home = () => {
         </section>
 
         <section id="skills" className="mb-16">
-          <h2 className="text-2xl font-bold mt-20 mb-6 sm:mb-14 lg:mb-10 text-center">Skills</h2>
+          <h2 className="text-2xl font-bold mt-20 mb-16 sm:mb-2 lg:mb-10 text-center">Skills</h2>
             <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-6 justify-items-center">
               {skills.map((skill, index) => (
               <motion.div
