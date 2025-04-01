@@ -93,26 +93,27 @@ const Home = () => {
         Whether starting from scratch or refining existing systems, I focus on building scalable, reliable solutions that users enjoy and teams can grow with.        </p>
         </section>
 
-        <section id="skills">
-          <h2 className="text-2xl font-bold mt-20 lg:mb-10 text-center">Skills</h2>
-          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-6 justify-items-center">
-            {skills.map((skill, index) => (
+        <section id="skills" className="mb-16">
+          <h2 className="text-2xl font-bold mt-20 mb-6 sm:mb-14 lg:mb-10 text-center">Skills</h2>
+            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-6 justify-items-center">
+              {skills.map((skill, index) => (
               <motion.div
-                key={index}
-                className="flex flex-col items-center group cursor-pointer"
-                initial={{ opacity: 0, y: index % 2 === 0 ? -50 : 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ type: "spring", stiffness: 300, damping: 20, delay: index * 0.05 }}
-                viewport={{ once: true }}
+              key={index}
+              className="flex flex-col items-center group cursor-pointer"
+              initial={{ opacity: 0, y: index % 2 === 0 ? -50 : 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20, delay: index * 0.05 }}
+              viewport={{ once: true }}
               >
-                <div className="text-4xl transition-transform mb-10 group-hover:scale-110">{skill.icon}</div>
-                <span className="text-sm mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-text">
-                  {skill.label}
-                </span>
-              </motion.div>
+            <div className="text-4xl transition-transform mb-4 group-hover:scale-110">{skill.icon}</div>
+            <span className="text-sm mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-text">
+              {skill.label}
+            </span>
+            </motion.div>
             ))}
-          </div>
+            </div>
         </section>
+
 
         <section id="projects">
           <h2 className="text-2xl font-bold mb-6 mt-20 text-center">Projects</h2>
