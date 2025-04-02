@@ -20,6 +20,18 @@
   --color-card: #2424242b;
 }
 
+.bg-gradient-animate {
+  background-image: linear-gradient(-45deg, #2a2c47, #233041, #2c234f, #173718);
+  background-size: 400% 400%;
+  animation: gradientMove 15s ease infinite;
+}
+
+.bg-gradient-animate-light {
+  background-image: linear-gradient(-45deg, #8da5dd, #f0bfad, #a7cfcb, #c0f6c9);
+  background-size: 400% 400%;
+  animation: gradientMove 15s ease infinite;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -152,16 +164,4 @@ form textarea {
   }
 }
 
-
-.bg-gradient-animate {
-  background-image: linear-gradient(-45deg, #070e75, #122c1a, #2c234f, #0f2a10);
-  background-size: 400% 400%;
-  animation: gradientMove 15s ease infinite;
-}
-
-.bg-gradient-animate-light {
-  background-image: linear-gradient(-45deg, #6b7ea9e6, #bcf4c0ea, #9cc0bcee, #91f5a3ea);
-  background-size: 400% 400%;
-  animation: gradientMove 15s ease infinite;
-}
 
