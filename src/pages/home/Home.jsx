@@ -28,7 +28,7 @@ const Home = () => {
   const stockProject = {
     title: "Stock Alerts Website",
     description: "Track DOW30 stocks and set email alerts. Includes Firebase login, MongoDB, email system, and Finnhub API integration.",
-    tech: ["React", "Firebase", "Vite", "Node.js", "MongoDB"],
+    tech: ["React", "Express", "Firebase", "Vite", "Node.js", "MongoDB"],
     live: "https://www.dropbox.com/scl/fi/iat6h02as74q6it18hrn1/Stock-Alerts-Website-Overview-2.mp4?rlkey=krird5zamav4jn0ihqspydm8u&st=xd30lss7&dl=0",
     site: "https://stockalerts.vercel.app",
     repo: [
