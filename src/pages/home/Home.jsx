@@ -30,6 +30,7 @@ const Home = () => {
     description: "Track DOW30 stocks and set email alerts. Includes Firebase login, MongoDB, email system, and Finnhub API integration.",
     tech: ["React", "Firebase", "Vite", "Node.js", "MongoDB"],
     live: "https://www.dropbox.com/scl/fi/iat6h02as74q6it18hrn1/Stock-Alerts-Website-Overview-2.mp4?rlkey=krird5zamav4jn0ihqspydm8u&st=xd30lss7&dl=0",
+    site: "https://stockalerts.vercel.app",
     repo: [
       "https://github.com/jstenecker/Stock_Alerts_Frontend",
       "https://github.com/jstenecker/Stock_Alerts_Backend"
@@ -140,6 +141,9 @@ const Home = () => {
               ))}
               <a href={stockProject.live} target="_blank" rel="noopener noreferrer" className="text-blue-500 underline hover:text-blue-700">
                 Demo Video
+              </a>
+              <a href={stockProject.site} target="_blank" rel="noopener noreferrer" className="text-blue-500 underline hover:text-blue-700">
+                Website
               </a>
             </div>
 
