@@ -75,7 +75,7 @@ const Home = () => {
               <a href="https://www.linkedin.com/in/joseph-stenecker" target="_blank" rel="noreferrer" className="hover:text-primary">
                 <FaLinkedin />
               </a>
-              <a href="/assets/Resume_Joseph_Stenecker.pdf" target="_blank" rel="noreferrer" className="hover:text-primary">
+              <a href="/assets/Resume_SEU_JoeStenecker.pdf" target="_blank" rel="noreferrer" className="hover:text-primary">
                 <FaFilePdf />
               </a>
             </div>
