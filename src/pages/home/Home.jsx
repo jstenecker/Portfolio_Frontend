@@ -7,6 +7,9 @@ import {
 } from "react-icons/si";
 import { FaGithub, FaLinkedin, FaFilePdf } from "react-icons/fa";
 
+// 🔗 Define path to resume PDF
+const resumePdf = "/resume.pdf";
+
 const skills = [
   { icon: <SiJavascript className="text-yellow-400" />, label: "JavaScript" },
   { icon: <SiTypescript className="text-blue-500" />, label: "TypeScript" },
@@ -42,8 +45,6 @@ const Home = () => {
     ],
   };
 
-  
-
   useEffect(() => {
     const id = localStorage.getItem("scrollToSection");
     if (id) {
@@ -58,62 +59,60 @@ const Home = () => {
     }
   }, []);
 
-
   return (
     <div className="relative z-0 w-full min-h-screen flex">
-
-      {/* Main Content */}
       <div className="flex-1 lg:ml-64 lg:mr-20 pt-20 px-6 max-w-screen-x1 w-full mx-auto mt-4 space-y-5">
         <section id="landing" className="space-y-4 lg:mb-1 sm:mb-16">
           <div className="lg:hidden text-center space-y-4">
             <h1 className="text-3xl font-bold">Joseph Stenecker</h1>
             <h2 className="text-lg text-gray-600 dark:text-gray-300">Full Stack Software Engineer</h2>
             <div className="flex justify-center space-x-4 text-xl text-gray-700 dark:text-gray-300 mt-2 mb-10">
-              <a href="https://github.com/jstenecker" target="_blank" rel="noreferrer" className="hover:text-primary space-y-4">
+              <a href="https://github.com/jstenecker" target="_blank" rel="noreferrer" className="hover:text-primary">
                 <FaGithub />
               </a>
               <a href="https://www.linkedin.com/in/joseph-stenecker" target="_blank" rel="noreferrer" className="hover:text-primary">
                 <FaLinkedin />
               </a>
-              <a href="/assets/resume.pdf" target="_blank" rel="noreferrer" className="hover:text-primary">
+              <a href={resumePdf} target="_blank" rel="noreferrer" className="hover:text-primary">
                 <FaFilePdf />
               </a>
             </div>
           </div>
         </section>
 
-
         <section id="about">
-        <h2 className="text-2xl font-semibold mt-16 mb-15 lg:mt-4 sm:mt-10">About Me</h2>
-        <p className="text-gray-700 mt-10 sm:mt-30 dark:text-gray-300">
-        I&apos;m Joe, a full-stack software engineer passionate about building clean, scalable applications with React and Node.js. I thrive across the stack—crafting responsive front-ends, building solid back-end systems, and integrating APIs.        </p>
-        <p className="text-gray-700 dark:text-gray-300">
-        I enjoy learning new tools and improving workflows. My experience includes Firebase auth, MongoDB, CI/CD pipelines, Vite, and Tailwind CSS. I value clean, maintainable code and love working with others to solve real-world problems.        </p>
-        <p className="text-gray-700 dark:text-gray-300">
-        Whether starting from scratch or refining existing systems, I focus on building scalable, reliable solutions that users enjoy and teams can grow with.        </p>
+          <h2 className="text-2xl font-semibold mt-16 mb-15 lg:mt-4 sm:mt-10">About Me</h2>
+          <p className="text-gray-700 mt-10 sm:mt-30 dark:text-gray-300">
+            I&apos;m Joe, a full-stack software engineer passionate about building clean, scalable applications with React and Node.js. I thrive across the stack—crafting responsive front-ends, building solid back-end systems, and integrating APIs.
+          </p>
+          <p className="text-gray-700 dark:text-gray-300">
+            I enjoy learning new tools and improving workflows. My experience includes Firebase auth, MongoDB, CI/CD pipelines, Vite, and Tailwind CSS. I value clean, maintainable code and love working with others to solve real-world problems.
+          </p>
+          <p className="text-gray-700 dark:text-gray-300">
+            Whether starting from scratch or refining existing systems, I focus on building scalable, reliable solutions that users enjoy and teams can grow with.
+          </p>
         </section>
 
         <section id="skills" className="mb-16">
           <h2 className="text-2xl font-bold mt-20 mb-16 sm:mb-2 lg:mb-10 text-center">Skills</h2>
-            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-6 justify-items-center">
-              {skills.map((skill, index) => (
+          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-6 justify-items-center">
+            {skills.map((skill, index) => (
               <motion.div
-              key={index}
-              className="flex flex-col items-center group cursor-pointer"
-              initial={{ opacity: 0, y: index % 2 === 0 ? -50 : 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20, delay: index * 0.05 }}
-              viewport={{ once: true }}
+                key={index}
+                className="flex flex-col items-center group cursor-pointer"
+                initial={{ opacity: 0, y: index % 2 === 0 ? -50 : 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20, delay: index * 0.05 }}
+                viewport={{ once: true }}
               >
-            <div className="text-4xl transition-transform mb-4 group-hover:scale-110">{skill.icon}</div>
-            <span className="text-sm mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-text">
-              {skill.label}
-            </span>
-            </motion.div>
+                <div className="text-4xl transition-transform mb-4 group-hover:scale-110">{skill.icon}</div>
+                <span className="text-sm mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-text">
+                  {skill.label}
+                </span>
+              </motion.div>
             ))}
-            </div>
+          </div>
         </section>
-
 
         <section id="projects">
           <h2 className="text-2xl font-bold mb-6 mt-20 text-center">Projects</h2>
@@ -162,7 +161,6 @@ const Home = () => {
           </motion.div>
         </section>
 
-
         {modalImage && (
           <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
             <div className="relative max-w-4xl w-full mx-auto">
@@ -174,6 +172,6 @@ const Home = () => {
       </div>
     </div>
   );
-}
+};
 
 export default Home;
